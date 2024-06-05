@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "smartcoder"
+version = "0.1.0"
+description = ""
+authors = ["Jin Chen <jin.chen@jinchen.me>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.2"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.1"
+ruff = "0.4.7"
+
+[tool.poetry.scripts]
+smartcoder = "smartcoder.scripts.cli:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = ["--capture=tee-sys"]
+
+[tool.ruff]
+fix = true
+line-length = 120
+force-exclude = true
+target-version = "py312"
+src = ["src"]
+
+[tool.ruff.lint]
+extend-select = [
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "ERA", # flake8-eradicate/eradicate
+    "I",   # isort
+    "N",   # pep8-naming
+    "PIE", # flake8-pie
+    "PGH", # pygrep
+    "RUF", # ruff checks
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "UP",  # pyupgrade
+]
+ignore = ["PGH003", "ERA001"]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
